@@ -1,0 +1,12 @@
+/* Dashboard page container */
+.dashboard-page {
+  padding: 2rem;
+}
+
+/* Responsive grid for cards */
+@media (max-width: 768px) {
+  .dashboard-page {
+    padding: 1rem;
+  }
+}
+
