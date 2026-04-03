@@ -10,7 +10,6 @@ export default function Sidebar({ isOpen, onClose }) {
   ];
 
   const handleNavClick = () => {
-    // Close sidebar on mobile after clicking a link
     if (isOpen) {
       onClose();
     }
@@ -18,16 +17,13 @@ export default function Sidebar({ isOpen, onClose }) {
 
   return (
     <>
-      {/* Desktop Sidebar - visible on screens lg and above */}
       <aside className="hidden lg:block w-64 bg-white dark:bg-gray-900 text-gray-900 dark:text-white h-screen sticky top-0 overflow-y-auto border-r border-gray-200 dark:border-gray-700">
-        {/* Logo */}
         <div className="p-6 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-2xl font-bold">
             Finance<span className="text-blue-500">Board</span>
           </h2>
         </div>
 
-        {/* Navigation */}
         <nav className="p-4">
           {navItems.map((item) => (
             <Link
@@ -42,20 +38,17 @@ export default function Sidebar({ isOpen, onClose }) {
         </nav>
       </aside>
 
-      {/* Mobile Sidebar - slides in from left on small screens */}
       <aside
         className={`fixed left-0 top-0 h-screen w-64 bg-white dark:bg-gray-900 text-gray-900 dark:text-white overflow-y-auto transform transition-transform duration-300 ease-in-out lg:hidden z-40 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* Logo */}
         <div className="p-6 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-2xl font-bold">
             Finance<span className="text-blue-500">Board</span>
           </h2>
         </div>
 
-        {/* Navigation */}
         <nav className="p-4">
           {navItems.map((item) => (
             <Link

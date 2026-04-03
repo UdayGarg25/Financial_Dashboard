@@ -36,7 +36,7 @@ export default function Transactions({ role, transactions, setTransactions }) {
   }
 
   return (
-    <div>
+    <div className="animate-fadeIn">
       {/* Search and Filter Bar */}
       <div className="bg-white dark:bg-gray-800 rounded-lg p-3 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700 mb-4 sm:mb-6">
         <div className="flex flex-col gap-2 sm:gap-4">

@@ -45,10 +45,8 @@ export default function App() {
     <div className={darkMode ? "dark" : ""}>
       <Router>
         <div className={`flex h-screen bg-gray-50 dark:bg-gray-900`}>
-        {/* Sidebar */}
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        {/* Overlay for mobile */}
         {isSidebarOpen && (
           <div 
             className="fixed inset-0 bg-black bg-opacity-50 lg:hidden z-30" 
@@ -56,9 +54,7 @@ export default function App() {
           />
         )}
 
-        {/* Main Content */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Topbar */}
           <Topbar 
             role={role} 
             setRole={setRole} 
@@ -69,7 +65,6 @@ export default function App() {
             transactions={transactions}
           />
 
-          {/* Page Content */}
           <main className={`flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-gray-50 dark:bg-gray-900`}>
             <Routes>
               <Route path="/" element={<Dashboard transactions={transactions} setTransactions={setTransactions} />} />
@@ -80,7 +75,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Intelligence Mode Overlay */}
       <IntelligenceMode 
         isOpen={intelligenceMode} 
         onClose={() => setIntelligenceMode(false)} 

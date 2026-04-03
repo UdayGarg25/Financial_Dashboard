@@ -17,7 +17,7 @@ export default function Dashboard({ transactions, setTransactions }) {
   const recentTransactions = transactions.slice(0, 5)
 
   return (
-    <div>
+    <div className="animate-fadeIn">
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
         <Card title="Total Balance" amount={totalBalance} icon="💰" change={12.5} isPositive={true} />

@@ -53,7 +53,7 @@ export default function Insights({ transactions }) {
   }
 
   return (
-    <div>
+    <div className="animate-fadeIn">
       {/* Main Insight Message */}
       <div className="bg-blue-50 dark:bg-blue-900 border-l-4 border-blue-500 dark:border-blue-600 p-3 sm:p-4 mb-4 sm:mb-6 rounded">
         <p className="text-gray-900 dark:text-white text-sm sm:text-base font-medium">{getMessage()}</p>

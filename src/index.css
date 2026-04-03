@@ -12,29 +12,81 @@
   }
 }
 
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation Utility Classes */
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 0.3s ease-in-out;
+  }
+}
+
 @layer components {
+  /* Sidebar Navigation */
   .sidebar-nav-item {
-    @apply flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white;
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all duration-200 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white;
   }
 
   .sidebar-nav-item.active {
-    @apply bg-blue-600 text-white dark:bg-blue-600 dark:text-white;
+    @apply bg-blue-600 text-white dark:bg-blue-600 dark:text-white translate-x-0;
   }
 
+  /* Cards with Smooth Hover Scale */
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md dark:hover:shadow-lg transition-all;
+    @apply bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-200 hover:shadow-md dark:hover:shadow-lg hover:scale-[1.02];
   }
 
+  /* Buttons with Scale Effects */
   .btn-primary {
-    @apply px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-colors;
+    @apply px-4 py-2 bg-blue-600 text-white rounded-lg font-medium transition-all duration-200 hover:bg-blue-700 hover:scale-105 active:scale-95 dark:bg-blue-600 dark:hover:bg-blue-700;
   }
 
   .btn-secondary {
-    @apply px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors;
+    @apply px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg font-medium transition-all duration-200 hover:bg-gray-300 dark:hover:bg-gray-600 hover:scale-105 active:scale-95;
   }
 
   .btn-danger {
-    @apply px-3 py-1 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-800 transition-colors text-sm;
+    @apply px-3 py-1 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 rounded transition-all duration-200 hover:bg-red-200 dark:hover:bg-red-800 hover:scale-105 active:scale-95 text-sm;
+  }
+
+  /* Transaction Table Rows */
+  .transaction-row {
+    @apply transition-colors duration-150 hover:bg-gray-50 dark:hover:bg-gray-700;
+  }
+
+  /* Dropdown Menu */
+  .dropdown-menu {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  /* Form Inputs */
+  .form-input {
+    @apply transition-all duration-200;
   }
 }
 

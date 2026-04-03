@@ -1,6 +1,6 @@
 export default function Card({ title, amount, icon, change, isPositive }) {
   return (
-    <div className="card hover:shadow-lg hover:scale-105 transition-all duration-200">
+    <div className="card">
       <div className="flex justify-between items-start mb-4">
         <div>
           <p className="text-gray-600 dark:text-gray-400 text-sm font-medium uppercase tracking-wide">{title}</p>
