@@ -1,103 +1,85 @@
-# Finance Dashboard - Complete Project Explanation
+# How This Project Works
 
-This is a simple guide to understanding your Finance Dashboard project. Read this before interviews!
+## The basic idea
 
----
+This is a finance dashboard - a place to track income and expenses. You can add transactions, see charts, and get insights about where your money goes.
 
-## 1. WHAT IS THIS PROJECT?
-
-**Simple Explanation:**
-Your Finance Dashboard is a website where you can:
-- 👀 **View** your money (income, expenses, balance)
-- 📊 **See charts** showing your money over time
-- 💳 **Manage transactions** (add, delete, search)
-- 📈 **Get insights** about your spending habits
-
-**Why it matters:**
-- It's a real-world project that businesses use
-- Shows you understand React, data management, and UI design
-- Demonstrates problem-solving skills
-
----
-
-## 2. PROJECT STRUCTURE (Folder Organization)
-
-Think of your project like a house. Each room has a specific purpose:
+## Folder structure explained
 
 ```
 src/
-├── components/      ← Reusable building blocks
-├── pages/           ← Full page views
-├── data/            ← Information storage
-├── App.jsx          ← Main control center
-├── index.css        ← Styling
-└── main.jsx         ← Entry point
+├── components/     - Reusable UI pieces
+├── pages/          - The 3 main pages
+├── data/           - Sample transactions
+├── App.jsx         - The main app
+├── index.css       - Styles
+└── main.jsx        - Entry point
 ```
 
-### What each folder does:
+### Components folder
+These are small reusable pieces. Like a Card that shows a number, or a Table that shows transactions. You can use them multiple times in different places.
 
-**`components/`** - Reusable building blocks
-- Think of it like LEGO pieces
-- You build small pieces, then combine them into bigger things
-- All are "dumb" components (just display, no complex logic)
+### Pages folder
+These are the 3 main pages:
+- Dashboard (shows overview)
+- Transactions (manage transactions)
+- Insights (shows analytics)
 
-**`pages/`** - Full page views
-- Think of it like rooms in a house
-- Each page is 1 complete view
-- Pages combine components + state management together
+### Data folder
+Just has the 16 sample transactions and chart data.
 
-**`data/`** - Information storage
-- All your sample transaction data lives here
-- Like a database file
-- Used by multiple pages
+## How files work together
 
----
+**App.jsx** is the main file. It:
+- Sets up the layout (sidebar on left, main content on right)
+- Manages the role (is user a viewer or admin?)
+- Sets up the 3 routes
 
-## 3. KEY FILES EXPLAINED (In Simple Terms)
+**Sidebar.jsx** shows links to the 3 pages and highlights which one you're on.
 
-### **App.jsx** - The Main Control Center
+**Topbar.jsx** is the header at the top. Shows the page title and lets you switch roles.
 
-**What it does:**
-- Sets up the overall layout (sidebar + topbar + main area)
-- Manages the `role` state (Viewer vs Admin)
-- Sets up routing (how pages connect)
+**Dashboard.jsx** uses Card, ChartSection, and TransactionTable components.
 
-**In simple terms:**
-Think of App.jsx as the main orchestrator. It says:
-- "I'll put Sidebar on the left"
-- "I'll put Topbar at the top"
-- "I'll put pages in the middle"
-- "I'll manage who the user is"
+**Transactions.jsx** is where you add/delete/search transactions.
 
-**Code flow:**
-```
-App loads
-  ├─ Sidebar appears (left side)
-  ├─ Topbar appears (top)
-  ├─ Page content appears (middle)
-  └─ User can navigate and toggle role
-```
+**Insights.jsx** shows spending analysis with 6 info cards.
 
----
+## How state works
 
-### **Sidebar.jsx** - The Navigation Menu
+The app tracks a few things:
+- `role` - Is the user a viewer or admin?
+- `transactions` - List of all transactions
+- `darkMode` - Light or dark theme?
 
-**What it does:**
-- Shows 3 navigation links:
-  - 📊 Dashboard
-  - 💳 Transactions
-  - 📈 Insights
-- Highlights which page you're currently on
-- Dark background (dark gray/black)
+When you add a transaction, it updates the transactions list. When you search, it filters the existing list. Simple stuff.
 
-**How it works:**
-```javascript
-// Array of links
-navItems = [
-  { path: '/', label: 'Dashboard', icon: '📊' },
-  { path: '/transactions', label: 'Transactions', icon: '💳' },
-  { path: '/insights', label: 'Insights', icon: '📈' },
-]
+## How data flows
+
+User clicks a link in Sidebar → Route changes → Different page loads
+
+User adds a transaction → New transaction added to state → Dashboard and Insights both update
+
+User toggles role → Admin buttons appear/disappear → Table shows/hides delete button
+
+## Example: Adding a transaction
+
+1. You switch to Admin role
+2. You click "+ Add Transaction"
+3. A form appears with fields: Date, Category, Amount, Type
+4. You fill it in and click Add
+5. New transaction gets added to the top of the list
+6. Dashboard updates to show new totals
+7. Charts update
+8. Form closes
+
+## Dark mode
+
+There's a moon icon in the header. Click it to switch between light and dark theme. It's stored in state so it remembers your choice while you're on the site.
+
+## Intelligence mode
+
+Click the magic wand button twice. It unlocks a special modal with some financial analysis based on your transactions.
 
 // Loop through and create clickable links
 navItems.map(item => <Link with the item />)

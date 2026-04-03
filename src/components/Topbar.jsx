@@ -1,17 +1,38 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation } from "react-router-dom";
+import { generateFinanceReport } from "../utils/generateReport";
 
-export default function Topbar({ role, setRole, darkMode, setDarkMode, onMenuClick, onIntelligenceClick }) {
-  const location = useLocation()
+export default function Topbar({
+  role,
+  setRole,
+  darkMode,
+  setDarkMode,
+  onMenuClick,
+  onIntelligenceClick,
+  transactions,
+}) {
+  const location = useLocation();
 
-  let title = 'Dashboard'
-  if (location.pathname === '/transactions') {
-    title = 'Transactions'
-  } else if (location.pathname === '/insights') {
-    title = 'Insights'
+  let title = "Dashboard";
+  if (location.pathname === "/transactions") {
+    title = "Transactions";
+  } else if (location.pathname === "/insights") {
+    title = "Insights";
   }
 
+  const handleGenerateReport = () => {
+    const confirmDownload = window.confirm(
+      "Do you want to download the finance report?",
+    );
+
+    if (confirmDownload) {
+      generateFinanceReport(transactions)
+    }
+  };
+
   return (
-    <div className={`bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center sticky top-0 z-20 shadow-sm transition-colors`}>
+    <div
+      className={`bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center sticky top-0 z-20 shadow-sm transition-colors`}
+    >
       <div className="flex items-center gap-4">
         {/* Hamburger Menu - visible only on mobile */}
         <button
@@ -19,16 +40,39 @@ export default function Topbar({ role, setRole, darkMode, setDarkMode, onMenuCli
           className="lg:hidden p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
           aria-label="Toggle menu"
         >
-          <svg className={`w-6 h-6 text-gray-900 dark:text-white`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          <svg
+            className={`w-6 h-6 text-gray-900 dark:text-white`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           </svg>
         </button>
-        
+
         {/* Page Title */}
-        <h1 className={`text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white`}>{title}</h1>
+        <h1
+          className={`text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white`}
+        >
+          {title}
+        </h1>
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4">
+        {/* Generate Report Button */}
+        <button
+          onClick={() => handleGenerateReport()}
+          className="px-2 sm:px-3 py-2 rounded-lg font-medium text-xs sm:text-sm transition-all duration-200 bg-green-600 text-white hover:bg-green-700 hover:shadow-lg"
+          title="Download financial report as PDF"
+        >
+          📄 <span className="hidden sm:inline ml-1">Report</span>
+        </button>
+
         {/* Intelligence Mode Button */}
         <button
           onClick={onIntelligenceClick}
@@ -41,11 +85,16 @@ export default function Topbar({ role, setRole, darkMode, setDarkMode, onMenuCli
           onClick={() => setDarkMode(!darkMode)}
           className={`px-2 sm:px-3 py-2 rounded-lg font-medium text-xs sm:text-sm transition-colors bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-yellow-400 hover:bg-gray-300 dark:hover:bg-gray-600`}
         >
-          {darkMode ? '☀️' : '🌙'}
-          <span className="hidden sm:inline ml-1">{darkMode ? 'Light' : 'Dark'}</span>
+          {darkMode ? "☀️" : "🌙"}
+          <span className="hidden sm:inline ml-1">
+            {darkMode ? "Light" : "Dark"}
+          </span>
         </button>
         <div className="flex items-center gap-1 sm:gap-2">
-          <label htmlFor="role" className={`text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300`}>
+          <label
+            htmlFor="role"
+            className={`text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300`}
+          >
             <span className="hidden sm:inline">Role:</span>
             <span className="inline sm:hidden">👤</span>
           </label>
@@ -61,5 +110,5 @@ export default function Topbar({ role, setRole, darkMode, setDarkMode, onMenuCli
         </div>
       </div>
     </div>
-  )
+  );
 }

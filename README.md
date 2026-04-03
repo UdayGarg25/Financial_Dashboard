@@ -1,103 +1,50 @@
-# Finance Dashboard - React + Vite + Tailwind
+# Finance Dashboard
 
-A simple, human-written Finance Dashboard built with React and Vite. Clean code, thoughtful UI touches, and role-based access.
+A simple finance dashboard I built to learn React and understand how to visualize financial data.
 
-## 🎯 Project Philosophy: Keep It Simple
+## What it does
 
-This project follows a **KISS (Keep It Simple, Stupid)** approach:
+This app lets you track income and expenses. You can add/delete transactions, filter them, and see charts showing where your money goes. There's also a role system where an admin can edit data but a viewer can only see.
 
-- **Clear Code**: Variables named logically (e.g., `totalBalance`, `recentTransactions`, not ambiguous abbreviations)
-- **Simple Components**: Each component does one thing well (Card, Table, Chart, etc.)
-- **No Over-Engineering**: Uses only `useState` for state (no Redux, Context API bloat)
-- **Thoughtful Touches**: Emojis 💼 and messages ✨ that feel human and helpful
-- **Readable Structure**: Easy to follow, modify, and extend
+## Features
 
-## ✨ Features
+- View your balance, income, and expenses at a glance
+- See charts showing trends over time
+- Add and delete transactions (admin only)
+- Search and filter transactions by category or type
+- Dark mode
+- Simple insights based on your spending
+- Intelligence mode (click the magic wand button twice for fun financial insights)
 
-### 📊 Dashboard Page
-- **Summary Cards** - Quick overview of Total Balance, Income, and Expenses
-- **Balance Trend Chart** - Visual line chart showing balance progression
-- **Income Breakdown** - Pie chart showing where income comes from
-- **Recent Transactions** - Shows latest 5 transactions at a glance
+## Tech I Used
 
-### 💰 Transactions Page  
-- **Search by Category** - Find transactions instantly by typing
-- **Filter by Type** - Show All, Income Only, or Expense Only
-- **Empty State** - Helpful message when no results match
-- **Add Transaction** (Admin) - Simple form with date, category, amount, type
-- **Delete Transaction** (Admin) - Quick remove button for mistakes
+- React
+- Tailwind CSS
+- React Router
+- Recharts for charts
+- Vite as the build tool
 
-### 📈 Insights Page
-- **Category Emojis** - Each category has a relevant emoji (💼 Salary, 🛒 Groceries, etc.)
-- **Smart Messaging** - Personalized guidance based on spending habits
-  - "Great job! Spending less than 30%" ✨
-  - "Good control over spending" 👍
-  - "Consider reducing expenses" ⚠️
-- **Key Metrics** - Top spending category, average spend, net balance, expense ratio
-- **Category Breakdown** - See spending by category with emoji markers
+## How to run it
 
-### 🔐 Role-Based Access
-- **Viewer Role** - Read-only access, see all data
-- **Admin Role** - Add and delete transactions (visible via toggle in header)
-
-## 📁 Simple Code Structure
-
-```
-src/
-├── components/           # Reusable UI pieces
-│   ├── Sidebar.jsx       # Navigation (3 links)
-│   ├── Topbar.jsx        # Header + role toggle
-│   ├── Card.jsx          # Stat card (title + amount + icon)
-│   ├── ChartSection.jsx  # Both charts in one place
-│   └── TransactionTable.jsx  # Transaction list + filters
-├── pages/                # Main pages
-│   ├── Dashboard.jsx     # Overview + charts
-│   ├── Transactions.jsx  # Manage transactions
-│   └── Insights.jsx      # Analytics with emojis
-├── data/
-│   └── transactions.js   # 16 sample transactions
-├── App.jsx               # Routing + role state
-├── index.css             # Tailwind + custom CSS classes
-└── main.jsx              # App entry point
-```
-
-## 🔄 How State Works
-
-We use simple **React hooks** (`useState`) only:
-
-```javascript
-// Example from App.jsx
-const [role, setRole] = useState('viewer')
-
-// That's it! No Redux, no Context needed.
-```
-
-For complex apps, this might not scale—but for a finance dashboard? Perfect.
-
-## 🛠️ Tech Stack
-
-- **React 18** - Simple, component-based UI
-- **Vite** - Fast build tool (instant hot reload)
-- **Tailwind CSS** - Utility classes (no custom CSS files needed)
-- **React Router v6** - Client-side navigation
-- **Recharts** - Lightweight charts (only 2: line + pie)
-
-## 🚀 Running the Project
-
-### Install Dependencies
 ```bash
 npm install
-```
-
-### Start Development Server
-```bash
 npm run dev
 ```
-Opens at `http://localhost:5173` (or next available port)
 
-### Build for Production
-```bash
-npm run build
+That's it. Opens at http://localhost:5173 or the next available port.
+
+## My approach
+
+I tried to keep this project simple and focused. Instead of using complicated state management like Redux, I just used React's `useState` since this is a small app. The code is organized into page components and smaller reusable components like cards and tables.
+
+I named variables clearly so they make sense when you read the code. The whole thing is around 400 lines of code, not including sample data.
+
+## Extra stuff
+
+- Role toggle to switch between Viewer and Admin
+- Dark mode that actually works
+- Intelligence mode as a fun extra feature
+- Sample transactions to get you started
 ```
 
 ## 💡 Key Design Decisions Explained

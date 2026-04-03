@@ -66,6 +66,7 @@ export default function App() {
             setDarkMode={setDarkMode}
             onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
             onIntelligenceClick={handleIntelligenceClick}
+            transactions={transactions}
           />
 
           {/* Page Content */}

@@ -1,203 +1,52 @@
-# 🎯 Finance Dashboard - Complete Features Guide
+# Features
 
-## Dashboard Page (`/`)
+## Dashboard
 
-### Overview Cards (3 Cards)
-Located at the top of the dashboard in a responsive grid layout.
+- Three cards showing your balance, income, and expenses at the top
+- A line chart showing how your balance changes over 7 days
+- A pie chart showing where your income comes from
+- Recent transactions table at the bottom
 
-#### 1. Total Balance Card
-- **Icon**: 💰 Money bag
-- **Display**: Current total balance ($15,400)
-- **Trend**: Shows +12.5% with green color
-- **Purpose**: Quick glance at net financial position
-- **Data Source**: Income - Expenses calculation
+## Transactions Page
 
-#### 2. Total Income Card  
-- **Icon**: 📈 Up arrow
-- **Display**: Sum of all income transactions
-- **Trend**: Shows +8.2% with green color
-- **Purpose**: See how much money is coming in
-- **Data Source**: Filtered transactions where type = 'income'
+- Search box to find transactions by category name
+- Filter dropdown (All / Income Only / Expense Only)
+- Add transaction button (only shows if you're admin)
+- Table showing all transactions with date, category, amount, and type
+- Delete button on each row (admin only)
 
-#### 3. Total Expenses Card
-- **Icon**: 📉 Down arrow
-- **Display**: Sum of all expense transactions
-- **Trend**: Shows -5.1% with red color
-- **Purpose**: See how much money is going out
-- **Data Source**: Filtered transactions where type = 'expense'
+When you add a transaction, you enter the date, category, amount, and whether it's income or expense. It gets added to the top of the list right away.
 
-### Charts (2 Interactive Charts)
+## Insights Page
 
-#### Line Chart - Balance Over Time
-- **Type**: Line chart (Recharts)
-- **Data Points**: 7 days of balance progression
-- **Shows**: Financial trend
-- **Interactive Features**:
-  - Hover to see exact values
-  - Tooltip displays balance amount
-  - Click legend to toggle line
-- **Usage**: Understand if finances are improving or declining
+Shows 6 cards with calculations:
+- Top category you spent on
+- Total expenses
+- Total income
+- Average per transaction
+- Net balance (income - expenses)
+- Your expense ratio (expenses as % of income)
 
-#### Pie Chart - Income Breakdown
-- **Type**: Pie chart (Recharts)
-- **Data Categories**: Salary, Groceries, Rent, Entertainment, Other
-- **Colors**: Color-coded slices
-- **Interactive Features**:
-  - Hover to highlight slice
-  - Hover to show exact amounts
-  - Tooltip with category name and value
-- **Usage**: See where income comes from
+Below that is a breakdown table showing how much you spent in each category.
 
-### Recent Transactions Table
-- **Columns**: Date, Category, Amount, Type
-- **Features**:
-  - Shows last transactions
-  - Color-coded: Green (income) / Red (expense)
-  - Amounts displayed with + or - sign
-  - Type shown as badge (Income/Expense)
-- **View Only**: No delete button (read-only for all users)
+There's also a small message at the top that changes based on your spending:
+- "Great job! Spending less than 30%" if you're doing well
+- "Good control" if you're around 50%
+- "Consider reducing expenses" if you're spending too much
 
----
+## Role System
 
-## Transactions Page (`/transactions`)
+**Viewer**: Can see everything but can't add or delete transactions.
 
-### Search & Filter Bar
-Located at the top in a horizontal flex container.
+**Admin**: Can add and delete transactions. The toggle is in the top right.
 
-#### Search Box
-- **Placeholder**: "Search by category..."
-- **Real-time**: Updates as you type
-- **Case-insensitive**: "salary" finds "Salary"
-- **Function**: Filters transactions by category name
-- **Example**:
-  - Type "salary" → Shows only Salary transactions
-  - Type "rent" → Shows only Rent transactions
+## Dark Mode
 
-#### Filter Dropdown
-- **Options**:
-  - All Types (default)
-  - Income (only income transactions)
-  - Expense (only expenses transactions)
-- **Behavior**: 
-  - Works combined with search
-  - Updates table immediately
-  - Persists selected value
+Click the moon/sun button in the top right to switch between light and dark mode. It's saved locally so it remembers your choice.
 
-#### Add Button (Admin Only)
-- **Visibility**: Only shows when role = "admin"
-- **Action**: Toggles add form visibility
-- **Style**: Primary blue button
-- **Text**: "+ Add"
+## Intelligence Mode
 
-### Add Transaction Form (Admin Only)
-
-Appears below filter bar when "+ Add" is clicked.
-
-**Form Fields:**
-1. **Date Input** - Date picker (format: YYYY-MM-DD)
-2. **Category Input** - Text input (e.g., "Groceries")
-3. **Amount Input** - Number input (e.g., 50)
-4. **Type Dropdown** - Select ("Expense" or "Income")
-5. **Add Button** - Submits form
-
-**Form Behavior:**
-- Validates all fields are filled
-- Creates new transaction with auto-generated ID
-- Inserts at top of transactions list
-- Clears form after adding
-- Closes form automatically
-- Updates calculations
-
-**Example Add:**
-```
-Date: 2024-01-31
-Category: Coffee
-Amount: 5
-Type: Expense
-Result: New transaction appears in table
-```
-
-### Transactions Table
-
-**Columns:**
-1. **Date** - Transaction date (YYYY-MM-DD format)
-2. **Category** - What the transaction is for
-3. **Amount** - Dollar amount (numeric value)
-4. **Type** - Income or Expense badge
-5. **Action** (Admin Only) - Delete button
-
-**Features:**
-- **Responsive**: Scrolls horizontally on mobile
-- **Color Coding**:
-  - Income text: Green (#27ae60)
-  - Expense text: Red (#e74c3c)
-- **Hover Effects**: Row highlights on hover
-- **Sorting**: Can be extended to sort columns
-- **Search Integration**: Shows filtered results only
-- **Delete Button** (Admin Only):
-  - Removes transaction immediately
-  - Updates all calculations
-  - Can't be undone (no undo)
-
-**Example Transaction Row:**
-```
-Date: 2024-01-15 | Category: Salary | Amount: +$5000 | Type: Income
-```
-
-### Filtering & Search Examples
-
-**Example 1: Find All Salary Income**
-1. Filter dropdown → "Income"
-2. Search box → "salary"
-3. Result: Only salary income transactions shown
-
-**Example 2: Find All January Groceries**
-1. Filter dropdown → "Expense"
-2. Search box → "groceries"
-3. Result: Only grocery expense transactions shown
-
-**Example 3: See Everything**
-1. Filter dropdown → "All Types"
-2. Leave search box empty
-3. Result: All 16 sample transactions shown
-
----
-
-## Insights Page (`/insights`)
-
-### Statistical Cards (6 Cards in Grid)
-
-#### Card 1: Highest Spending Category
-- **Title**: "Highest Spending Category"
-- **Display**: Category name (e.g., "Rent")
-- **Amount**: Dollar amount spent ($1,200)
-- **Info**: "Most spent on this"
-- **Calculation**: `max(category_sums) from expenses`
-
-#### Card 2: Total Expenses
-- **Title**: "Total Expenses"
-- **Display**: Sum of all expense transactions ($3,615)
-- **Info**: "This month" + count of expense transactions
-- **Usage**: See total spending for the period
-
-#### Card 3: Average Transaction
-- **Title**: "Average Transaction"
-- **Display**: Average expense amount ($81.48)
-- **Info**: "Per expense"
-- **Calculation**: `totalExpenses / numberOfExpenses`
-
-#### Card 4: Total Income
-- **Title**: "Total Income"
-- **Display**: Sum of all income transactions ($10,800)
-- **Info**: Income source count (e.g., "5 sources")
-- **Usage**: See where money came from
-
-#### Card 5: Net Balance
-- **Title**: "Net Balance"
-- **Display**: Income - Expenses ($7,185)
-- **Color**: Green if positive, Red if negative
-- **Info**: "Income - Expenses"
-- **Calculation**: `totalIncome - totalExpenses`
+Click the magic wand (🔮) button in the top right twice to unlock a special insights modal. It shows some financial analysis based on your transactions.
 
 #### Card 6: Expense Ratio
 - **Title**: "Expense Ratio"
