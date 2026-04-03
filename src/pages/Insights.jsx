@@ -1,21 +1,24 @@
-// Helper function to get emoji for category
-function getCategoryEmoji(category) {
-  const emojiMap = {
-    'Salary': '💼',
-    'Freelance': '💻',
-    'Bonus': '🎁',
-    'Dividend': '📈',
-    'Groceries': '🛒',
-    'Rent': '🏠',
-    'Utilities': '💡',
-    'Entertainment': '🎬',
-    'Restaurant': '🍽️',
-    'Shopping': '🛍️',
-    'Gym': '💪',
-    'Gas': '⛽',
-    'Insurance': '🛡️',
+import React from 'react'
+import { FaChartLine, FaBriefcase, FaLaptop, FaGift, FaShoppingCart, FaHome, FaLightbulb, FaFilm, FaUtensils, FaShoppingBag, FaDumbbell, FaCar, FaLock, FaWallet } from 'react-icons/fa'
+
+// Helper function to get icon for category
+function getCategoryIcon(category) {
+  const iconMap = {
+    'Salary': FaBriefcase,
+    'Freelance': FaLaptop,
+    'Bonus': FaGift,
+    'Dividend': FaChartLine,
+    'Groceries': FaShoppingCart,
+    'Rent': FaHome,
+    'Utilities': FaLightbulb,
+    'Entertainment': FaFilm,
+    'Restaurant': FaUtensils,
+    'Shopping': FaShoppingBag,
+    'Gym': FaDumbbell,
+    'Gas': FaCar,
+    'Insurance': FaLock,
   }
-  return emojiMap[category] || '💰'
+  return iconMap[category] || FaWallet
 }
 
 export default function Insights({ transactions }) {
@@ -44,11 +47,11 @@ export default function Insights({ transactions }) {
   // Thoughtful message based on spending
   const getMessage = () => {
     if (expenseRatio < 30) {
-      return '✨ Great job! You are spending less than 30% of income'
+      return 'Great job! You are spending less than 30% of income'
     } else if (expenseRatio < 50) {
-      return '👍 Good control over your spending'
+      return 'Good control over your spending'
     } else {
-      return '⚠️ Consider reducing expenses'
+      return 'Consider reducing expenses'
     }
   }
 
@@ -66,7 +69,7 @@ export default function Insights({ transactions }) {
         <div className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
           <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm font-medium uppercase">Top Category</p>
           <div className="flex items-center gap-2 sm:gap-3 mt-3">
-            <span className="text-2xl sm:text-4xl">{getCategoryEmoji(highestCategory?.[0])}</span>
+            {React.createElement(getCategoryIcon(highestCategory?.[0]), { className: 'text-2xl sm:text-4xl' })}
             <div>
               <p className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">{highestCategory?.[0] || 'N/A'}</p>
               <p className="text-xs sm:text-sm text-red-600 dark:text-red-400 font-semibold">${highestCategory?.[1] || 0}</p>
@@ -125,7 +128,7 @@ export default function Insights({ transactions }) {
               .map(([category, amount]) => (
                 <div key={category} className="flex justify-between items-center py-2 sm:py-3 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 px-2 rounded">
                   <div className="flex items-center gap-2 sm:gap-3">
-                    <span className="text-xl sm:text-2xl">{getCategoryEmoji(category)}</span>
+                    {React.createElement(getCategoryIcon(category), { className: 'text-xl sm:text-2xl' })}
                     <span className="font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base">{category}</span>
                   </div>
                   <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm sm:text-base">${amount}</span>

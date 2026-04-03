@@ -1,12 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
+import { FaChartBar, FaCreditCard, FaChartLine } from "react-icons/fa";
 
 export default function Sidebar({ isOpen, onClose }) {
   const location = useLocation();
 
   const navItems = [
-    { path: "/", label: "Dashboard", icon: "📊" },
-    { path: "/transactions", label: "Transactions", icon: "💳" },
-    { path: "/insights", label: "Insights", icon: "📈" },
+    { path: "/", label: "Dashboard", component: FaChartBar },
+    { path: "/transactions", label: "Transactions", component: FaCreditCard },
+    { path: "/insights", label: "Insights", component: FaChartLine },
   ];
 
   const handleNavClick = () => {
@@ -31,7 +32,7 @@ export default function Sidebar({ isOpen, onClose }) {
               to={item.path}
               className={`sidebar-nav-item ${location.pathname === item.path ? "active" : ""}`}
             >
-              <span className="text-lg">{item.icon}</span>
+              <item.component className="text-lg" />
               <span>{item.label}</span>
             </Link>
           ))}
@@ -57,7 +58,7 @@ export default function Sidebar({ isOpen, onClose }) {
               onClick={handleNavClick}
               className={`sidebar-nav-item ${location.pathname === item.path ? "active" : ""}`}
             >
-              <span className="text-lg">{item.icon}</span>
+              <item.component className="text-lg" />
               <span>{item.label}</span>
             </Link>
           ))}

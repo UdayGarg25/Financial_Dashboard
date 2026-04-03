@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { generateFinanceReport } from "../utils/generateReport";
+import { FaFile, FaBrain, FaSun, FaMoon, FaEllipsisV } from "react-icons/fa";
 
 export default function Topbar({
   role,
@@ -87,27 +88,27 @@ export default function Topbar({
           {/* Generate Report Button */}
           <button
             onClick={handleGenerateReport}
-            className="px-2 sm:px-3 py-2 rounded-lg font-medium text-xs sm:text-sm transition-all duration-200 bg-green-600 text-white hover:bg-green-700 hover:shadow-lg hover:scale-105 active:scale-95"
+            className="px-2 sm:px-3 py-2 rounded-lg font-medium text-xs sm:text-sm transition-all duration-200 bg-green-600 text-white hover:bg-green-700 hover:shadow-lg hover:scale-105 active:scale-95 flex items-center gap-1"
             title="Download financial report as PDF"
           >
-            📄 <span className="ml-1">Report</span>
+            <FaFile /> <span>Report</span>
           </button>
 
           {/* Intelligence Mode Button */}
           <button
             onClick={handleIntelligence}
-            className="px-2 sm:px-3 py-2 rounded-lg font-medium text-xs sm:text-sm transition-all duration-200 bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 hover:shadow-lg hover:scale-105 active:scale-95"
+            className="px-2 sm:px-3 py-2 rounded-lg font-medium text-xs sm:text-sm transition-all duration-200 bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 hover:shadow-lg hover:scale-105 active:scale-95 flex items-center gap-1"
           >
-            🔮 <span className="ml-1">Intelligence</span>
+            <FaBrain /> <span>Intelligence</span>
           </button>
 
           {/* Dark Mode Button */}
           <button
             onClick={handleDarkMode}
-            className={`px-2 sm:px-3 py-2 rounded-lg font-medium text-xs sm:text-sm transition-all duration-200 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-yellow-400 hover:bg-gray-300 dark:hover:bg-gray-600 hover:scale-105 active:scale-95`}
+            className={`px-2 sm:px-3 py-2 rounded-lg font-medium text-xs sm:text-sm transition-all duration-200 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-yellow-400 hover:bg-gray-300 dark:hover:bg-gray-600 hover:scale-105 active:scale-95 flex items-center gap-1`}
           >
-            {darkMode ? "☀️" : "🌙"}
-            <span className="ml-1">{darkMode ? "Light" : "Dark"}</span>
+            {darkMode ? <FaSun /> : <FaMoon />}
+            <span>{darkMode ? "Light" : "Dark"}</span>
           </button>
 
           {/* Role Selector */}
@@ -136,7 +137,7 @@ export default function Topbar({
           className="lg:hidden p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-all duration-200 hover:scale-110 active:scale-95"
           aria-label="Toggle actions menu"
         >
-          <span className="text-xl">⋮</span>
+          <FaEllipsisV className="text-xl" />
         </button>
 
         {/* Mobile Dropdown Menu */}
@@ -148,7 +149,7 @@ export default function Topbar({
               className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 hover:translate-x-1 flex items-center gap-2"
               title="Download financial report as PDF"
             >
-              📄 Generate Report
+              <FaFile /> Generate Report
             </button>
 
             {/* Intelligence Button */}
@@ -156,7 +157,7 @@ export default function Topbar({
               onClick={handleIntelligence}
               className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 hover:translate-x-1 flex items-center gap-2"
             >
-              🔮 Intelligence Mode
+              <FaBrain /> Intelligence Mode
             </button>
 
             {/* Dark Mode Toggle */}
@@ -164,7 +165,7 @@ export default function Topbar({
               onClick={handleDarkMode}
               className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
             >
-              {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+              {darkMode ? <FaSun /> : <FaMoon />} {darkMode ? "Light Mode" : "Dark Mode"}
             </button>
 
             {/* Divider */}

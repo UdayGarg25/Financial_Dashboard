@@ -1,21 +1,24 @@
-// Helper function to get emoji for category
-function getCategoryEmoji(category) {
-  const emojiMap = {
-    Salary: "💼",
-    Freelance: "💻",
-    Bonus: "🎁",
-    Dividend: "📈",
-    Groceries: "🛒",
-    Rent: "🏠",
-    Utilities: "💡",
-    Entertainment: "🎬",
-    Restaurant: "🍽️",
-    Shopping: "🛍️",
-    Gym: "💪",
-    Gas: "⛽",
-    Insurance: "🛡️",
-  };
-  return emojiMap[category] || "💰";
+import React from 'react'
+import { FaChartLine, FaBrain, FaLightbulb, FaExclamationTriangle, FaCheck, FaBriefcase, FaLaptop, FaGift, FaShoppingCart, FaHome, FaFilm, FaUtensils, FaShoppingBag, FaDumbbell, FaCar, FaLock, FaWallet } from 'react-icons/fa'
+
+// Helper function to get icon for category
+function getCategoryIcon(category) {
+  const iconMap = {
+    Salary: FaBriefcase,
+    Freelance: FaLaptop,
+    Bonus: FaGift,
+    Dividend: FaChartLine,
+    Groceries: FaShoppingCart,
+    Rent: FaHome,
+    Utilities: FaLightbulb,
+    Entertainment: FaFilm,
+    Restaurant: FaUtensils,
+    Shopping: FaShoppingBag,
+    Gym: FaDumbbell,
+    Gas: FaCar,
+    Insurance: FaLock,
+  }
+  return iconMap[category] || FaWallet
 }
 
 export default function IntelligenceMode({ isOpen, onClose, transactions }) {
@@ -53,13 +56,13 @@ export default function IntelligenceMode({ isOpen, onClose, transactions }) {
   // Generate suggestion based on analysis
   const getSuggestion = () => {
     if (expenseRatio > 70) {
-      return "⚠️ Critical: Your expenses exceed 70% of income. Immediate action needed.";
+      return "Alert: Your expenses exceed 70% of income. Immediate action needed.";
     } else if (expenseRatio > 50) {
-      return "📊 Consider reducing discretionary spending to increase savings rate.";
+      return "Consider reducing discretionary spending to increase savings rate.";
     } else if (highestCategory && categorySpending[highestCategory[0]] > 500) {
-      return `💡 Your highest spending is on ${highestCategory[0]}. Look for ways to optimize.`;
+      return `Your highest spending is on ${highestCategory[0]}. Look for ways to optimize.`;
     } else {
-      return "✨ Great financial discipline! Continue monitoring your spending.";
+      return "Great financial discipline! Continue monitoring your spending.";
     }
   };
 
@@ -73,8 +76,8 @@ export default function IntelligenceMode({ isOpen, onClose, transactions }) {
         <div className="w-full max-w-6xl mt-6 sm:mt-10">
           {/* Header */}
           <div className="text-center mb-8 sm:mb-12">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 mb-2">
-              🔮 Zorvyn Intelligence
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 mb-2 flex items-center justify-center gap-2">
+              <FaBrain className="text-4xl sm:text-5xl" /> Zorvyn Intelligence
             </h1>
             <p className="text-gray-400 text-sm sm:text-lg">
               Financial Analysis & Simulation System
@@ -86,7 +89,7 @@ export default function IntelligenceMode({ isOpen, onClose, transactions }) {
             {/* Card 1 */}
             <div className="bg-gradient-to-br from-purple-900 to-purple-950 border border-purple-500 rounded-xl p-4 sm:p-6 transition-all duration-200">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl sm:text-4xl">📈</span>
+                <FaChartLine className="text-3xl sm:text-4xl text-purple-300" />
                 <h2 className="text-lg sm:text-xl font-bold text-purple-300">
                   Future Simulation
                 </h2>
@@ -111,7 +114,7 @@ export default function IntelligenceMode({ isOpen, onClose, transactions }) {
                   <p
                     className={`text-sm font-semibold ${balanceChange < 0 ? "text-red-400" : "text-green-400"}`}
                   >
-                    {balanceChange < 0 ? "⚠️" : "✓"} {Math.abs(balanceChange)}{" "}
+                    {balanceChange < 0 ? <FaExclamationTriangle className="inline mr-1" /> : <FaCheck className="inline mr-1" />} {Math.abs(balanceChange)}{" "}
                     change
                   </p>
                   <p className="text-xs text-gray-500 mt-1">
@@ -126,7 +129,7 @@ export default function IntelligenceMode({ isOpen, onClose, transactions }) {
             {/* Card 2 */}
             <div className="bg-gradient-to-br from-blue-900 to-blue-950 border border-blue-500 rounded-xl p-4 sm:p-6 transition-all duration-200">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl sm:text-4xl">🧠</span>
+                <FaBrain className="text-3xl sm:text-4xl text-blue-300" />
                 <h2 className="text-lg sm:text-xl font-bold text-blue-300">
                   Smart Insights
                 </h2>
@@ -136,9 +139,7 @@ export default function IntelligenceMode({ isOpen, onClose, transactions }) {
                 <div>
                   <p className="text-gray-400">Top Spending Category</p>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-2xl sm:text-3xl">
-                      {getCategoryEmoji(highestCategory?.[0])}
-                    </span>
+                    {React.createElement(getCategoryIcon(highestCategory?.[0]), { className: 'text-2xl sm:text-3xl' })}
                     <div>
                       <p className="text-base sm:text-lg font-bold text-orange-400">
                         {highestCategory?.[0] || "N/A"}
@@ -186,7 +187,7 @@ export default function IntelligenceMode({ isOpen, onClose, transactions }) {
             {/* Card 3 */}
 <div className="bg-gradient-to-br from-cyan-900 to-cyan-950 border border-cyan-500 rounded-xl p-4 sm:p-6 transition-all duration-200">
   <div className="flex items-center gap-3 mb-4">
-    <span className="text-3xl sm:text-4xl">💡</span>
+    <FaLightbulb className="text-3xl sm:text-4xl text-cyan-300" />
     <h2 className="text-lg sm:text-xl font-bold text-cyan-300">
       Suggestions
     </h2>
@@ -203,21 +204,21 @@ export default function IntelligenceMode({ isOpen, onClose, transactions }) {
     <div className="space-y-2 text-xs sm:text-sm">
 
       <div className="flex items-start gap-2">
-        <span className="text-green-400 mt-0.5">✓</span>
+        <FaCheck className="text-green-400 mt-0.5" />
         <p className="text-gray-300">
           Reduce spending in {highestCategory?.[0] || "top categories"}
         </p>
       </div>
 
       <div className="flex items-start gap-2">
-        <span className="text-blue-400 mt-0.5">✓</span>
+        <FaLightbulb className="text-blue-400 mt-0.5" />
         <p className="text-gray-300">
           Set a monthly budget of approx ₹{Math.round(totalIncome * 0.6)}
         </p>
       </div>
 
       <div className="flex items-start gap-2">
-        <span className="text-purple-400 mt-0.5">✓</span>
+        <FaCheck className="text-purple-400 mt-0.5" />
         <p className="text-gray-300">
           Track recurring expenses to identify savings opportunities
         </p>
