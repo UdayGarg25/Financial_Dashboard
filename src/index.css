@@ -8,33 +8,33 @@
   }
 
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
   }
 }
 
 @layer components {
   .sidebar-nav-item {
-    @apply flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all text-sm font-medium text-gray-400 hover:bg-gray-700 hover:text-white;
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white;
   }
 
   .sidebar-nav-item.active {
-    @apply bg-blue-600 text-white;
+    @apply bg-blue-600 text-white dark:bg-blue-600 dark:text-white;
   }
 
   .card {
-    @apply bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-all;
+    @apply bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md dark:hover:shadow-lg transition-all;
   }
 
   .btn-primary {
-    @apply px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors;
+    @apply px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-colors;
   }
 
   .btn-secondary {
-    @apply px-4 py-2 bg-gray-200 text-gray-900 rounded-lg font-medium hover:bg-gray-300 transition-colors;
+    @apply px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors;
   }
 
   .btn-danger {
-    @apply px-3 py-1 bg-red-100 text-red-600 rounded hover:bg-red-200 transition-colors text-sm;
+    @apply px-3 py-1 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-800 transition-colors text-sm;
   }
 }
 

@@ -271,6 +271,14 @@ Works on desktop, tablet, and mobile:
 - **Optimized** - Tailwind CSS purges unused styles
 - **Charts** - Recharts optimized rendering
 
+## 🎨 Recent Enhancements
+
+**Data Persistence** - All transactions now save to browser's `localStorage`. Data persists even after refreshing the page!
+
+**Dark Mode Toggle** - Click the "🌙 Dark / ☀️ Light" button in the header to switch themes. Saves your preference seamlessly.
+
+**Smooth Animations** - Cards scale on hover with smooth transitions. Table rows have enhanced hover effects and fade animations for better UX.
+
 ## 🔮 Future Enhancements
 
 Optional features to add:

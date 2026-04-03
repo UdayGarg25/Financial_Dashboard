@@ -1,5 +1,3 @@
-import { transactionsData } from '../data/transactions'
-
 // Helper function to get emoji for category
 function getCategoryEmoji(category) {
   const emojiMap = {
@@ -20,10 +18,10 @@ function getCategoryEmoji(category) {
   return emojiMap[category] || '💰'
 }
 
-export default function Insights() {
+export default function Insights({ transactions }) {
   // Calculate basic metrics
-  const expenses = transactionsData.filter(t => t.type === 'expense')
-  const income = transactionsData.filter(t => t.type === 'income')
+  const expenses = transactions.filter(t => t.type === 'expense')
+  const income = transactions.filter(t => t.type === 'income')
 
   // Calculate totals
   const totalExpenses = expenses.reduce((sum, t) => sum + t.amount, 0)
@@ -57,80 +55,80 @@ export default function Insights() {
   return (
     <div>
       {/* Main Insight Message */}
-      <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
-        <p className="text-gray-900 font-medium">{getMessage()}</p>
+      <div className="bg-blue-50 dark:bg-blue-900 border-l-4 border-blue-500 dark:border-blue-600 p-3 sm:p-4 mb-4 sm:mb-6 rounded">
+        <p className="text-gray-900 dark:text-white text-sm sm:text-base font-medium">{getMessage()}</p>
       </div>
 
       {/* Key Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
         
         {/* Highest Spending Card */}
-        <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-          <p className="text-gray-600 text-sm font-medium uppercase">Top Category</p>
-          <div className="flex items-center gap-3 mt-3">
-            <span className="text-4xl">{getCategoryEmoji(highestCategory?.[0])}</span>
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm font-medium uppercase">Top Category</p>
+          <div className="flex items-center gap-2 sm:gap-3 mt-3">
+            <span className="text-2xl sm:text-4xl">{getCategoryEmoji(highestCategory?.[0])}</span>
             <div>
-              <p className="text-2xl font-bold text-gray-900">{highestCategory?.[0] || 'N/A'}</p>
-              <p className="text-sm text-red-600 font-semibold">${highestCategory?.[1] || 0}</p>
+              <p className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">{highestCategory?.[0] || 'N/A'}</p>
+              <p className="text-xs sm:text-sm text-red-600 dark:text-red-400 font-semibold">${highestCategory?.[1] || 0}</p>
             </div>
           </div>
         </div>
 
         {/* Total Expenses Card */}
-        <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-          <p className="text-gray-600 text-sm font-medium uppercase">Total Spent</p>
-          <p className="text-3xl font-bold text-gray-900 mt-3">${totalExpenses}</p>
-          <p className="text-xs text-gray-500 mt-2">Across {expenses.length} expenses</p>
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm font-medium uppercase">Total Spent</p>
+          <p className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-3">${totalExpenses}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Across {expenses.length} expenses</p>
         </div>
 
         {/* Total Income Card */}
-        <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-          <p className="text-gray-600 text-sm font-medium uppercase">Total Income</p>
-          <p className="text-3xl font-bold text-green-600 mt-3">${totalIncome}</p>
-          <p className="text-xs text-gray-500 mt-2">From {income.length} sources</p>
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm font-medium uppercase">Total Income</p>
+          <p className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400 mt-3">${totalIncome}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">From {income.length} sources</p>
         </div>
 
         {/* Average Transaction */}
-        <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-          <p className="text-gray-600 text-sm font-medium uppercase">Average Spend</p>
-          <p className="text-3xl font-bold text-gray-900 mt-3">${avgTransaction}</p>
-          <p className="text-xs text-gray-500 mt-2">Per transaction</p>
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm font-medium uppercase">Average Spend</p>
+          <p className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-3">${avgTransaction}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Per transaction</p>
         </div>
 
         {/* Net Balance */}
-        <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-          <p className="text-gray-600 text-sm font-medium uppercase">Net Saved</p>
-          <p className={`text-3xl font-bold mt-3 ${balance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm font-medium uppercase">Net Saved</p>
+          <p className={`text-2xl sm:text-3xl font-bold mt-3 ${balance >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
             ${balance}
           </p>
-          <p className="text-xs text-gray-500 mt-2">{balance >= 0 ? 'Surplus' : 'Deficit'}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">{balance >= 0 ? 'Surplus' : 'Deficit'}</p>
         </div>
 
         {/* Expense Ratio */}
-        <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-          <p className="text-gray-600 text-sm font-medium uppercase">Expense Ratio</p>
-          <p className="text-3xl font-bold text-gray-900 mt-3">{expenseRatio}%</p>
-          <p className="text-xs text-gray-500 mt-2">Of total income</p>
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm font-medium uppercase">Expense Ratio</p>
+          <p className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-3">{expenseRatio}%</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Of total income</p>
         </div>
       </div>
 
       {/* Category Breakdown Table */}
-      <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mt-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Spending by Category</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700 mt-4 sm:mt-6">
+        <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-4">Spending by Category</h3>
         
         {Object.keys(categorySpending).length === 0 ? (
-          <p className="text-gray-500">No expenses recorded yet</p>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">No expenses recorded yet</p>
         ) : (
-          <div className="space-y-2">
+          <div className="space-y-1 sm:space-y-2">
             {Object.entries(categorySpending)
               .sort((a, b) => b[1] - a[1])
               .map(([category, amount]) => (
-                <div key={category} className="flex justify-between items-center py-3 border-b border-gray-100 hover:bg-gray-50 px-2 rounded">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{getCategoryEmoji(category)}</span>
-                    <span className="font-medium text-gray-700">{category}</span>
+                <div key={category} className="flex justify-between items-center py-2 sm:py-3 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 px-2 rounded">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <span className="text-xl sm:text-2xl">{getCategoryEmoji(category)}</span>
+                    <span className="font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base">{category}</span>
                   </div>
-                  <span className="font-semibold text-gray-900">${amount}</span>
+                  <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm sm:text-base">${amount}</span>
                 </div>
               ))}
           </div>
