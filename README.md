@@ -45,4 +45,4 @@ I also added a few extra features like dark mode, report generation, and a small
 That's it 🙂
 
 
-**Built with ❤️ following KISS principles - Keep It Simple, Stupid!**
+**Built with a focus on simplicity (KISS principle)**
