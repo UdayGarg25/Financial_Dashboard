@@ -38,4 +38,4 @@ export const categoryData = [
   { name: 'Other', value: 505 },
 ];
 
-export const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
+export const COLORS = ['#4f46e5', '#06b6d4', '#10b981', '#f59e0b', '#ef4444'];

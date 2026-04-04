@@ -44,7 +44,7 @@ export default function App() {
   return (
     <div className={darkMode ? "dark" : ""}>
       <Router>
-        <div className={`flex h-screen bg-gray-50 dark:bg-gray-900`}>
+        <div className={`flex h-screen bg-gradient-to-br from-white via-blue-50 to-indigo-50 dark:bg-gray-900`}>
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
         {isSidebarOpen && (
@@ -65,7 +65,7 @@ export default function App() {
             transactions={transactions}
           />
 
-          <main className={`flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-gray-50 dark:bg-gray-900`}>
+          <main className={`flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 dark:bg-gray-900`}>
             <Routes>
               <Route path="/" element={<Dashboard transactions={transactions} setTransactions={setTransactions} />} />
               <Route path="/transactions" element={<Transactions role={role} transactions={transactions} setTransactions={setTransactions} />} />

@@ -36,22 +36,23 @@ export default function Transactions({ role, transactions, setTransactions }) {
   }
 
   return (
-    <div className="animate-fadeIn">
+    <div className="animate-fadeIn space-y-6">
       {/* Search and Filter Bar */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700 mb-4 sm:mb-6">
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Manage Transactions</h2>
         <div className="flex flex-col gap-2 sm:gap-4">
           <input
             type="text"
             placeholder="Search by category..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full px-3 sm:px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm placeholder-gray-500 dark:placeholder-gray-400"
+            className="w-full px-3 sm:px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-200"
           />
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              className="flex-1 px-3 sm:px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              className="flex-1 px-3 sm:px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm transition-all duration-200"
             >
               <option value="all">All Types</option>
               <option value="income">Income Only</option>
@@ -71,8 +72,8 @@ export default function Transactions({ role, transactions, setTransactions }) {
 
       {/* Add Form (Admin Only) */}
       {showAdd && role === 'admin' && (
-        <div className="bg-blue-50 dark:bg-blue-900 rounded-lg p-3 sm:p-6 border border-blue-200 dark:border-blue-700 mb-4 sm:mb-6">
-          <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-4">Add New Transaction</h3>
+        <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-4 sm:p-6 border border-indigo-200 dark:border-indigo-800">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Add New Transaction</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
             <div>
               <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Date</label>
@@ -80,7 +81,7 @@ export default function Transactions({ role, transactions, setTransactions }) {
                 type="date"
                 value={formData.date}
                 onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                className="w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs sm:text-sm"
+                className="w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm transition-all duration-200"
               />
             </div>
             <div>
@@ -90,7 +91,7 @@ export default function Transactions({ role, transactions, setTransactions }) {
                 placeholder="e.g., Food"
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs sm:text-sm placeholder-gray-500 dark:placeholder-gray-400"
+                className="w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-200"
               />
             </div>
             <div>
@@ -100,7 +101,7 @@ export default function Transactions({ role, transactions, setTransactions }) {
                 placeholder="e.g., 50"
                 value={formData.amount}
                 onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
-                className="w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs sm:text-sm placeholder-gray-500 dark:placeholder-gray-400"
+                className="w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-200"
               />
             </div>
             <div>
@@ -108,7 +109,7 @@ export default function Transactions({ role, transactions, setTransactions }) {
               <select
                 value={formData.type}
                 onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                className="w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs sm:text-sm"
+                className="w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm transition-all duration-200"
               >
                 <option value="expense">Expense</option>
                 <option value="income">Income</option>

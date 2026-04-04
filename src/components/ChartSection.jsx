@@ -2,7 +2,7 @@ import { LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tool
 
 export default function ChartSection({ balanceData, categoryData, colors }) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
       {/* Line Chart */}
       <div className="card">
         <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4">Balance Over Time</h2>
@@ -16,10 +16,10 @@ export default function ChartSection({ balanceData, categoryData, colors }) {
             <Line
               type="monotone"
               dataKey="balance"
-              stroke="#3b82f6"
-              strokeWidth={2}
-              dot={{ fill: '#3b82f6', r: 4 }}
-              activeDot={{ r: 6 }}
+              stroke="#4f46e5"
+              strokeWidth={3}
+              dot={{ fill: '#4f46e5', r: 5 }}
+              activeDot={{ r: 7 }}
             />
           </LineChart>
         </ResponsiveContainer>
@@ -27,7 +27,7 @@ export default function ChartSection({ balanceData, categoryData, colors }) {
 
       {/* Pie Chart */}
       <div className="card">
-        <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4">Income Breakdown</h2>
+        <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4">Spending Breakdown</h2>
         <ResponsiveContainer width="100%" height={250}>
           <PieChart>
             <Pie data={categoryData} cx="50%" cy="50%" labelLine={false} label={({ name, value }) => `${name} $${value}`} outerRadius={80} fill="#8884d8" dataKey="value">
