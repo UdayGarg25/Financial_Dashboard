@@ -77,7 +77,7 @@ export default function IntelligenceMode({ isOpen, onClose, transactions }) {
           {/* Header */}
           <div className="text-center mb-8 sm:mb-12">
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 mb-2 flex items-center justify-center gap-2">
-              <FaBrain className="text-4xl sm:text-5xl" /> Zorvyn Intelligence
+              <FaBrain className="text-4xl sm:text-5xl" /> Special Intelligence
             </h1>
             <p className="text-gray-400 text-sm sm:text-lg">
               Financial Analysis & Simulation System
